@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Testing Project</string>
+
+    <!--LOGIN ACTIVITY-->
+    <string name="la_username">Username</string>
+    <string name="la_password">Password</string>
+    <string name="la_btn_login">Login</string>
+</resources>

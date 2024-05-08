@@ -1,0 +1,21 @@
+
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
+u
+Eapp/src/main/java/com/demo/testingproject/view/login/LoginActivity.kt,2\5\25cbd17bda5529b7ca98c4908333ff5d9d0eec15
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+i
+9app/src/main/java/com/demo/testingproject/MainActivity.kt,f\c\fc81a99d8b3d6561278b8facb7de89e0f5a41167
+l
+<app/src/main/java/com/demo/testingproject/MainApplication.kt,5\0\50976c9f14918982fe9e4364041deb81f2e79794
+i
+9app/src/main/java/com/demo/testingproject/di/AppModule.kt,7\6\76097d2208171163ac94fb06cffa9ddc1d562377
+X
+(gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
+@
+local.properties,0\7\0712df971a99ac4d2fccb8e0fb19f377f3374cca
+C
+settings.gradle.kts,7\4\749edfcc96398253e5b3416184e95c46621da850
