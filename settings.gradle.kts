@@ -6,9 +6,12 @@ pluginManagement {
     }
 }
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        // The following repositories will be used for dependency resolution
         google()
+        maven("https://maven.google.com")
+        maven("https://oss.sonatype.org/content/repositories/snapshots")
+        maven("https://jitpack.io")
         mavenCentral()
     }
 }
