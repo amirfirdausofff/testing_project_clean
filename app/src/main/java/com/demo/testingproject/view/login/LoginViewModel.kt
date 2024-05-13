@@ -24,7 +24,7 @@ class LoginViewModel(
     }
 
     sealed class State {
-
+        data class ShowLoading(val isLoading: Boolean) : State()
     }
 
     fun onEvent(event: Event) {
@@ -39,13 +39,14 @@ class LoginViewModel(
             email = email,
             password = password
         )
+        setState(State.ShowLoading(true))
         apiDelay(QUARTER_SECOND_IN_MILLIS)
         when (val result = loginUseCase.invoke(request)) {
             is ResultCall.Failed -> {
-                Log.d("failed","failed")
+                setState(State.ShowLoading(false))
             }
             is ResultCall.Success -> {
-                Log.d("Success","Success")
+                setState(State.ShowLoading(false))
             }
         }
     }
