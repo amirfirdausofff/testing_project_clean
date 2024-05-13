@@ -1,34 +1,47 @@
 package com.demo.testingproject.view.login
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import com.demo.testingproject.R
 import com.demo.testingproject.databinding.ActivityLoginBinding
-import com.demo.testingproject.databinding.ActivityMainBinding
-import com.demo.testingproject.util.viewBinding
+import com.demo.testingproject.util.subscribeSingleState
+import com.demo.testingproject.widget.loading.LoadingDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
+    private lateinit var loadingDialog: LoadingDialog
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModel()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingDialog = LoadingDialog(this)
+
+        subscribeState()
         setupButton()
     }
 
-    private fun setupButton() = with(binding){
-        btnLogin.setOnClickListener{
-            if(validateForm())
+    private fun subscribeState() {
+        subscribeSingleState(viewModel.state) {
+            when (it) {
+                is LoginViewModel.State.ShowLoading -> showLoading(it.isLoading)
+                else -> {}
+            }
+        }
+    }
+
+    private fun setupButton() = with(binding) {
+        btnLogin.setOnClickListener {
+            if (validateForm())
                 clickLogin()
         }
     }
 
-    private fun clickLogin(){
+    private fun clickLogin() {
         viewModel.onEvent(
             LoginViewModel.Event.OnClickLogin(
                 binding.etUsername.text.toString().trim(),
@@ -49,6 +62,19 @@ class LoginActivity : AppCompatActivity() {
             isValid = false
         }
         return isValid
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        if (isLoading) {
+            if (loadingDialog.isShowing) {
+                loadingDialog.hide()
+            }
+            loadingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            loadingDialog.setCancelable(false)
+            loadingDialog.show()
+        } else {
+            loadingDialog.hide()
+        }
     }
 
 }
