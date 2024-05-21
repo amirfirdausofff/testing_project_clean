@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.testingproject.R
 import com.demo.testingproject.databinding.ActivityLoginBinding
+import com.demo.testingproject.util.startActivity
 import com.demo.testingproject.util.subscribeSingleState
+import com.demo.testingproject.view.register.RegisterActivity
 import com.demo.testingproject.widget.loading.LoadingDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
 
         subscribeState()
         setupButton()
+        setupTextView()
     }
 
     private fun subscribeState() {
@@ -38,6 +41,11 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener {
             if (validateForm())
                 clickLogin()
+        }
+    }
+    private fun setupTextView() = with(binding) {
+        tvRegister.setOnClickListener {
+            startActivity<RegisterActivity>()
         }
     }
 
