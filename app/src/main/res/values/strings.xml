@@ -17,6 +17,8 @@
     <string name="ra_btn_register">Register</string>
 
 
+    <!--ERROR DIALOG STRING-->
+    <string name="btn_okay">Okay</string>
     <!--GLOBAL STRING-->
     <string name="this_field_is_required">This field is required!!!</string>
 </resources>

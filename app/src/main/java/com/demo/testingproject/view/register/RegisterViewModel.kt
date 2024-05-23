@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.demo.testingproject.base.BaseViewModel
 import com.demo.testingproject.constant.TimeIntervals.QUARTER_SECOND_IN_MILLIS
+import com.demo.testingproject.domain.model.general.FailedResult
 import com.demo.testingproject.domain.model.general.ResultCall
 import com.demo.testingproject.domain.model.request.RegisterRequest
 import com.demo.testingproject.domain.usecase.RegisterUseCase
@@ -34,6 +35,7 @@ class RegisterViewModel(
     sealed class State {
         data class ShowLoading(val isLoading: Boolean) : State()
         data class ShowErrorField(val fieldType: FieldType) : State()
+        data class ShowFailed(val failedResult: FailedResult) : State()
     }
 
     fun onEvent(event: Event) {
@@ -68,8 +70,8 @@ class RegisterViewModel(
         apiDelay(QUARTER_SECOND_IN_MILLIS)
         when (val result = registerUseCase.invoke(request)) {
             is ResultCall.Failed -> {
-                Log.d("result", result.toString())
                 setState(State.ShowLoading(false))
+                setState(State.ShowFailed(result.failedResult))
             }
 
             is ResultCall.Success -> {

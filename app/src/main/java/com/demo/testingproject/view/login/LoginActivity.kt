@@ -6,9 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.testingproject.R
 import com.demo.testingproject.databinding.ActivityLoginBinding
+import com.demo.testingproject.domain.model.general.FailedResult
 import com.demo.testingproject.util.startActivity
 import com.demo.testingproject.util.subscribeSingleState
 import com.demo.testingproject.view.register.RegisterActivity
+import com.demo.testingproject.view.register.RegisterViewModel
+import com.demo.testingproject.widget.dialog.ErrorMessageDialog
 import com.demo.testingproject.widget.loading.LoadingDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
         subscribeSingleState(viewModel.state) {
             when (it) {
                 is LoginViewModel.State.ShowLoading -> showLoading(it.isLoading)
+                is LoginViewModel.State.ShowFailed -> showFailed(it.failedResult)
                 else -> {}
             }
         }
@@ -85,4 +89,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun showFailed(failedResult: FailedResult) {
+        val bottomSheetDialog = ErrorMessageDialog(
+            this,
+            title = failedResult.title,
+            description = failedResult.description,
+            onOkClickListener = {
+                // Handle OK button click
+            }
+        )
+        bottomSheetDialog.show()
+    }
 }

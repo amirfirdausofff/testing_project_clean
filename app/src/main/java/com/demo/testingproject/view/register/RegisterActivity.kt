@@ -3,10 +3,12 @@ package com.demo.testingproject.view.register
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.demo.testingproject.R
 import com.demo.testingproject.databinding.ActivityLoginBinding
 import com.demo.testingproject.databinding.ActivityRegisterBinding
+import com.demo.testingproject.domain.model.general.FailedResult
 import com.demo.testingproject.enums.FieldType
 import com.demo.testingproject.util.subscribeSingleState
 import com.demo.testingproject.view.login.LoginViewModel
@@ -15,6 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.demo.testingproject.enums.FieldType.EMAIL
 import com.demo.testingproject.enums.FieldType.FULL_NAME
 import com.demo.testingproject.enums.FieldType.PASSWORD
+import com.demo.testingproject.widget.dialog.ErrorMessageDialog
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -39,6 +42,8 @@ class RegisterActivity : AppCompatActivity() {
             when (it) {
                 is RegisterViewModel.State.ShowLoading -> showLoading(it.isLoading)
                 is RegisterViewModel.State.ShowErrorField -> showErrorField(it.fieldType)
+                is RegisterViewModel.State.ShowFailed -> showFailed(it.failedResult)
+
                 else -> {}
             }
         }
@@ -84,5 +89,18 @@ class RegisterActivity : AppCompatActivity() {
             else -> Unit
         }
     }
+
+    private fun showFailed(failedResult: FailedResult) {
+        val bottomSheetDialog = ErrorMessageDialog(
+            this,
+            title = failedResult.title,
+            description = failedResult.description,
+            onOkClickListener = {
+                // Handle OK button click
+            }
+        )
+        bottomSheetDialog.show()
+    }
+
 
 }
