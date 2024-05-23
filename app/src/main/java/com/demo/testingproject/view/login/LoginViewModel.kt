@@ -5,10 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.demo.testingproject.base.BaseViewModel
 import com.demo.testingproject.constant.TimeIntervals.QUARTER_SECOND_IN_MILLIS
+import com.demo.testingproject.domain.model.general.FailedResult
 import com.demo.testingproject.domain.model.general.ResultCall
 import com.demo.testingproject.domain.model.request.LoginRequest
 import com.demo.testingproject.domain.usecase.LoginUseCase
 import com.demo.testingproject.util.StateWrapper
+import com.demo.testingproject.view.register.RegisterViewModel
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
@@ -25,6 +27,7 @@ class LoginViewModel(
 
     sealed class State {
         data class ShowLoading(val isLoading: Boolean) : State()
+        data class ShowFailed(val failedResult: FailedResult) : State()
     }
 
     fun onEvent(event: Event) {
@@ -44,6 +47,7 @@ class LoginViewModel(
         when (val result = loginUseCase.invoke(request)) {
             is ResultCall.Failed -> {
                 setState(State.ShowLoading(false))
+                setState(State.ShowFailed(result.failedResult))
             }
             is ResultCall.Success -> {
                 setState(State.ShowLoading(false))

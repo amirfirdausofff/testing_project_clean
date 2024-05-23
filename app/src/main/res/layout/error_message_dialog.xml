@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom">
+
+
+    <LinearLayout
+        android:padding="@dimen/size_10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="@dimen/size_50dp"
+            android:layout_height="2dp"
+            android:background="@color/cardview_dark_background"
+            android:orientation="vertical"
+            tools:ignore="Suspicious0dp">
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/size_20dp"
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_horizontal"
+            tools:ignore="RtlHardcoded,SpUsage"
+            android:textSize="@dimen/size_20dp"/>
+
+        <TextView
+            android:id="@+id/tv_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_horizontal"
+            tools:ignore="RtlHardcoded,SpUsage"
+            android:textSize="@dimen/size_14dp" />
+
+        <Button
+            android:layout_marginTop="@dimen/size_20dp"
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_okay" />
+    </LinearLayout>
+</LinearLayout>

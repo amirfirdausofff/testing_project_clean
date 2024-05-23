@@ -7,4 +7,18 @@
     <string name="la_btn_login">Login</string>
     <string name="la_err_username">Username empty</string>
     <string name="la_err_password">Password empty</string>
+    <string name="la_tv_register_now">Register Now</string>
+
+    <!--REGISTER ACTIVITY-->
+    <string name="ra_email">Email</string>
+    <string name="ra_password">Password</string>
+    <string name="ra_name">Name</string>
+    <string name="ra_cb_for_marketing">For Marketing</string>
+    <string name="ra_btn_register">Register</string>
+
+
+    <!--ERROR DIALOG STRING-->
+    <string name="btn_okay">Okay</string>
+    <!--GLOBAL STRING-->
+    <string name="this_field_is_required">This field is required!!!</string>
 </resources>
